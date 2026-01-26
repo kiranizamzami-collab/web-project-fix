@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 3D Social Links</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  padding:110px 20px 40px;
+  font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+  color:#ffffff;
+  background:#000;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ===== VIDEO BACKGROUND (BERSIH, TANPA OVERLAY UNGU) ===== */
+#bg-video{
+  position:fixed;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  z-index:-10;
+  filter:brightness(1) contrast(1.05);
+}
+
+/* ===== NAVBAR FLAT (TANPA GELEMBUNG) ===== */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:70px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:22px;
+  padding:0 20px;
+  z-index:1000;
+
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(255,255,255,.15);
+}
+
+nav a{
+  cursor:pointer;
+  font-weight:600;
+  font-size:14px;
+  color:#ddd;
+  text-decoration:none;
+  padding:6px 2px;
+  border-bottom:2px solid transparent;
+  transition:.3s;
+}
+
+nav a:hover,
+nav a.active{
+  color:#fff;
+  border-bottom:2px solid #fff;
+}
+
+/* ===== CONTAINER TENGAH ===== */
+.container{
+  max-width:1100px;
+  margin:60px auto 0;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:32px;
+  justify-items:center;
+}
+
+/* ===== GLASS CARD ===== */
+.card{
+  width:100%;
+  max-width:320px;
+  background:rgba(255,255,255,.08);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:22px;
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  transition:.45s ease;
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.04);
+  box-shadow:0 20px 55px rgba(0,0,0,.8);
+}
+
+.card h3{
+  margin:0 0 10px;
+  color:#fff;
+}
+
+.card p{
+  font-size:13px;
+  color:#ddd;
+}
+
+/* ===== IMAGE GLASS ===== */
+.image-circle{
+  width:100%;
+  height:140px;
+  margin-top:22px;
+  border-radius:18px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(12px);
+  box-shadow:
+    inset 0 0 25px rgba(255,255,255,.25),
+    0 10px 30px rgba(0,0,0,.6);
+}
+
+/* ===== SOCIAL ICON ===== */
+.social-icon{
+  width:42px;
+  height:42px;
+  padding:6px;
+  position:absolute;
+  top:18px;
+  right:18px;
+  background:#fff;
+  border-radius:12px;
+}
+
+.disabled{
+  opacity:.35;
+  pointer-events:none;
+}
+.hidden{display:none}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="cosmic.mp4" type="video/mp4">
+</video>
+
+<!-- NAVBAR -->
+<nav>
+  <a onclick="showSet(1)">Muhammad</a>
+  <a onclick="showSet(2)">Khofifah</a>
+  <a onclick="showSet(3)">Ifadah</a>
+  <a onclick="showSet(4)">Arsya</a>
+  <a onclick="showSet(5)">Ranie</a>
+  <a onclick="showSet(6)">Najwa</a>
+</nav>
+
+<!-- MAIN -->
+<div id="mainCards" class="container">
+  <div class="card"><h3>Our Approach</h3><p>Isi bebas</p><div class="image-circle"></div></div>
+  <div class="card"><h3>Clarity First</h3><p>Isi bebas</p><div class="image-circle"></div></div>
+  <div class="card"><h3>Speed with Focus</h3><p>Isi bebas</p><div class="image-circle"></div></div>
+  <div class="card"><h3>Real-World Validation</h3><p>Isi bebas</p><div class="image-circle"></div></div>
+</div>
+
+<div id="setContainer"></div>
+
+<script>
+const linkData={
+  1:["","https://www.facebook.com/share/1DPB5N2YZA/","https://youtube.com/@mkh-puncak1",""],
+  2:["","https://www.facebook.com/share/1CnKXMLCjc/","",""],
+  3:["","https://www.facebook.com/share/17PsT4SxNw/","",""],
+  4:["","","",""],
+  5:["","","",""],
+  6:["","","",""]
+};
+
+const icons=[
+ "https://cdn-icons-png.flaticon.com/512/2111/2111463.png",
+ "https://cdn-icons-png.flaticon.com/512/733/733547.png",
+ "https://cdn-icons-png.flaticon.com/512/1384/1384060.png",
+ "https://cdn-icons-png.flaticon.com/512/3046/3046121.png"
+];
+const labels=["Instagram","Facebook","YouTube","TikTok"];
+
+function showSet(n){
+ document.querySelectorAll("nav a").forEach(a=>a.classList.remove("active"));
+ document.querySelectorAll("nav a")[n-1].classList.add("active");
+ document.getElementById("mainCards").classList.add("hidden");
+
+ let html="<div class='container'>";
+ for(let i=0;i<4;i++){
+  let link=linkData[n][i];
+  html+=`
+  <div class="card ${!link?'disabled':''}">
+    <img src="${icons[i]}" class="social-icon">
+    <h3>${labels[i]}</h3>
+    <p>${link?'Klik untuk membuka':'Belum tersedia'}</p>
+    <div class="image-circle"></div>
+    ${link?`<a href="${link}" target="_blank" style="position:absolute;inset:0"></a>`:""}
+  </div>`;
+ }
+ html+="</div>";
+ document.getElementById("setContainer").innerHTML=html;
+}
+
+showSet(1);
+</script>
+
+</body>
+</html>

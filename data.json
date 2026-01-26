@@ -1,0 +1,141 @@
+[
+  {
+    "arabic": "قَرَأَ",
+    "latin": "qara’a",
+    "akar": "ق-ر-أ",
+    "derivasi": "قَارِئٌ، مَقْرُوءٌ، قِرَاءَةٌ",
+    "arti": "membaca — kegiatan melafalkan atau memahami tulisan",
+    "penggunaankata": "belajar & ibadah",
+    "makna": "membaca",
+    "hadith": "ٱقْرَأْ بِٱسْمِ رَبِّكَ ٱلَّذِي خَلَقَ (العلق: 1)"
+  },
+  {
+    "arabic": "عَلِمَ",
+    "latin": "ʿalima",
+    "akar": "ع-ل-م",
+    "derivasi": "عَالِمٌ، مَعْلُومٌ، عِلْمٌ",
+    "arti": "mengetahui — memahami sesuatu dengan pasti",
+    "penggunaankata": "ilmu pengetahuan & aqidah",
+    "makna": "mengetahui",
+    "hadith": "«مَنْ يُرِدِ ٱللَّهُ بِهِ خَيْرًا يُفَقِّهْهُ فِي ٱلدِّينِ» (رواه البخاري)"
+  },
+  {
+    "arabic": "قَالَ",
+    "latin": "qāla",
+    "akar": "ق-و-ل",
+    "derivasi": "قَائِلٌ، مَقُولٌ، قَوْلٌ",
+    "arti": "berkata — menyampaikan dengan lisan",
+    "penggunaankata": "percakapan, khotbah, dan dalil",
+    "makna": "berkata",
+    "hadith": "«مَنْ كَانَ يُؤْمِنُ بِٱللَّهِ وَٱلْيَوْمِ ٱلْآخِرِ فَلْيَقُلْ خَيْرًا» (رواه البخاري)"
+  },
+  {
+    "arabic": "سَمِعَ",
+    "latin": "samiʿa",
+    "akar": "س-م-ع",
+    "derivasi": "سَامِعٌ، مَسْمُوعٌ، سَمَاعٌ",
+    "arti": "mendengar — menerima suara melalui telinga",
+    "penggunaankata": "komunikasi & ibadah",
+    "makna": "mendengar",
+    "hadith": "«ٱللَّهُمَّ ٱسْمَعْ دُعَائِي» (حديث)"
+  },
+  {
+"arabic": "حمد",
+"latin": "hamida",
+"akar": "ح-م-د",
+"derivasi": "حامد,محمود,حمدا",
+"arti": "memuji dengan lisan atas kebaikan",
+"penggunaankata": "ibadah ,dzikir,pujian kepada Allah",
+"makna": "pujian yang disertai pengakuan atas kebaikan",
+"hadith": "الحمد لله تملأ الميزان (رواه مسلم) "
+},
+  {
+  "arabic": "كَتَبَ",
+    "latin": "kataba",
+  "akar": "ك-ت-ب",
+    "derivasi": "كَتَبَ، يَكْتُبُ، اُكْتُبْ، كِتَابَةٌ، كَاتِبٌ، مَكْتُوبٌ",
+    "arti": "menulis",
+  "penggunaankata": "kegiatan menuangkan pikiran, ide, atau informasi ke dalam bentuk tulisan",
+  "makna": "menulis",
+  "hadith": ""
+  },
+ {
+  "arabic": "الكلامُ",
+  "latin": "al-kalam",
+  "akar": "ك-ل-م",
+  "derivasi": [
+    "مُتَكَلِّم: orang yang berbicara (ism fa'il)",
+    "تَكَلَّمَ: ia berbicara (fi'il madhi)",
+    "كَلِمَة: kata",
+    "كَلَام: ucapan, perkataan"
+  ],
+  "arti": "ucapan",
+  "penggunaankata": "Digunakan dalam Al-Qur'an, hadis, dan kitab-kitab nahwu.",
+  "makna": "Ucapan; segala bentuk perkataan yang tersusun dan memiliki makna.",
+  "hadith": "إن من أحبكم إليّ وأقربكم مني مجلسًا يوم القيامة أحاسنكم أخلاقًا، وإن أبغضكم إليّ وأبعدكم مني يوم القيامة الثرثارون والمتشدقون والمتفيهقون. وفي شرح الحديث: الكلامُ الزائد (كثرة الكلام بلا فائدة) مذموم."
+},
+
+{
+  "arabic": "غَمْد",
+  "latin": "ghamada",
+  "akar": "غ-م-د",
+  "derivasi": [
+    "غِمْد: sarung pedang (isim mufrad)",
+    "أَغْمَاد: sarung-sarung pedang (jamak)",
+    "غَمَدَ: ia menyarungkan (fi'il madhi)",
+    "يَغْمِدُ: ia sedang/akan menyarungkan (fi'il mudhari')",
+    "غَمْد: penyarungan (masdar)",
+    "غَامِد: orang yang menyarungkan (ism fa'il)",
+    "مَغْمُود: yang disarungkan (ism maf'ul)",
+    "تَغَمَّدَ: meliputi, menyelimuti (bab tafa'ul)",
+    "تَغَمُّمُد: peliputan, penyelubungan (masdar tafa'ul)",
+    "مُتَغَمِّد: yang meliputi (ism fa'il tafa'ul)",
+    "مُتَغَمَّد: yang diliputi (ism maf'ul tafa'ul)"
+  ],
+  "arti": "sarung pedang, menutup, menyarungkan",
+  "penggunaankata": "Secara fisik: sarung pedang, penutup benda tajam. Secara doa: meliputi dengan rahmat Allah. Secara kiasan: penutup aib, perlindungan ruhani.",
+  "makna": "penutup benda tajam; simbol perlindungan dan penutupan aib; dalam konteks doa: Allah menyelimuti hamba dengan rahmat dan ampunan",
+  "hadith": "(رواه الإمام علي بن أبي طالب رضي الله عنه) «مَنْ سَلَّ سَيْفَ البَغْيِ غُمِدَ فِي رَأْسِهِ» Barangsiapa menghunus pedang kezaliman, maka kepalanya sendiri akan menjadi sarungnya."
+},
+{
+  "arabic": "العالم",
+  "latin": "al-‘ālam",
+  "akar": "ع-ل-م",
+  "derivasi": "عالِم، علماء، عِلم، معلومة، تعليم، استعلام",
+  "arti": "orang yang berilmu, ulama, tokoh ilmu",
+  "penggunaankata": "lughawi: orang yang mengetahui sesuatu, syar‘i: ulama pewaris nabi, pesantren: guru besar/kiai",
+  "makna": "orang yang mengetahui, ulama pewaris ilmu Nabi ﷺ, simbol cahaya ilmu, tokoh yang dihormati",
+  "hadith": "إن العلماء ورثة الأنبياء – رواه أبو داود والترمذي"
+},
+{
+  "arabic": "اللفظ",
+  "latin": "al-lafẓ",
+  "akar": "ل-ف-ظ",
+  "derivasi": [
+    "لفظ",
+    "يلفظ",
+    "ألفاظ",
+    "ملفوظ",
+    "تلفّظ"
+  ],
+  "arti": "pengucapan; lafaz; kata yang diucapkan",
+  "penggunaan_kata": [
+    "Digunakan dalam ilmu nahwu dan balaghah untuk menunjuk ‘bentuk kata yang terdengar’ (bukan makna)."
+  ],
+  "makna": "bunyi atau bentuk lisan yang dihasilkan oleh alat ucap; kata yang diekspresikan secara verbal",
+  "hadits": [
+    {
+      "hadis": "إِنَّ الرَّجُلَ لَيَتَكَلَّمُ بِالْكَلِمَةِ مِنْ سَخَطِ اللَّهِ لَا يُلْقِي لَهَا بَالًا، يَهْوِي بِهَا فِي جَهَنَّمَ",
+      "artinya": "Sesungguhnya ada seseorang yang mengucapkan sepatah kata yang dimurkai Allah tanpa ia pikirkan, namun ia terjerumus karenanya ke dalam neraka.",
+      "keterangan": "Digunakan oleh ulama untuk menjelaskan bahaya lafaz yang keluar dari lisan tanpa pertimbangan."
+    }
+  ]
+}
+
+
+  
+
+]
+
+
+

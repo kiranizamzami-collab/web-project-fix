@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <title>Halaman Komunitas Trading</title>
+    <style>
+        /* Reset dan dasar */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121320;
+            color: #eee;
+        }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navigasi atas */
+        nav {
+            background: #1c1c2e;
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid #2c2c3e;
+        }
+        nav button {
+            background: #2c2c3e;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 15px;
+            color: #bbb;
+            cursor: pointer;
+        }
+        nav button.active,
+        nav button:hover {
+            background: #4a90e2;
+            color: #fff;
+        }
+
+        /* Layout utama */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            grid-gap: 20px;
+        }
+
+        /* Video utama */
+        .main-video {
+            background: #22222a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 0 20px #000;
+            display: flex;
+            flex-direction: column;
+        }
+        .main-video video {
+            width: 100%;
+            display: block;
+            border-bottom: 1px solid #444;
+        }
+        .main-video .title {
+            padding: 15px;
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+            color: #ddd;
+        }
+
+        /* Sidebar kanan */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .small-card {
+            background: #1e1e2f;
+            padding: 12px 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #0008 inset;
+        }
+        .small-card h4 {
+            margin: 0 0 6px 0;
+            font-weight: 700;
+            color: #ccc;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .small-card h3 {
+            margin: 0 0 8px 0;
+            font-size: 16px;
+            font-weight: 700;
+            color: #eee;
+        }
+        .small-card p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.3;
+            color: #aaa;
+        }
+        .small-card img {
+            width: 100%;
+            border-radius: 6px;
+            margin-top: 8px;
+            filter: brightness(0.85);
+        }
+
+        /* Cards bawah */
+        .cards-grid {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: #1e1e2f;
+            border-radius: 11px;
+            padding: 15px 18px;
+            box-shadow: 0 0 20px #0009 inset;
+        }
+        .card h5 {
+            font-size: 11px;
+            font-weight: 600;
+            color: #5f7bbd;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 6px;
+        }
+        .card h3 {
+            font-size: 16px;
+            margin: 0 0 10px 0;
+            color: #eee;
+            font-weight: 700;
+        }
+        .card p {
+            color: #aaa;
+            font-size: 13px;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        /* Font */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                flex-direction: row;
+                overflow-x: auto;
+                padding-bottom: 10px;
+                gap: 10px;
+            }
+            .sidebar > div {
+                min-width: 200px;
+                flex-shrink: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <button class="active">Library</button>
+        <button>Courses</button>
+        <button>Tools</button>
+        <button>About the Academy</button>
+        <button>News</button>
+        <button>Broker check</button>
+        <button>FAQ</button>
+        <button>Useful resources</button>
+    </nav>
+
+    <main class="container">
+        <section class="main-video">
+            <video controls>
+                <source src="video-saya.mp4" type="video/mp4" />
+                Browser kamu tidak mendukung pemutaran video.
+            </video>
+            <div class="title">Trading with Leverage</div>
+        </section>
+
+        <aside class="sidebar">
+            <div class="small-card">
+                <h5>Forex Brokers</h5>
+                <h3>How to Choose a Broker?</h3>
+                <p>Find out when the broker’s domain was registered...</p>
+                <img src="broker-building.png" alt="Choose a Broker" />
+            </div>
+
+            <div class="small-card">
+                <h5>Harmony</h5>
+                <h3>Survivorship Bias in Trading</h3>
+                <p>Justified profit in trading is the result of proper analysis...</p>
+                <img src="trading-plan.png" alt="Trading Plan" />
+            </div>
+        </aside>
+    </main>
+
+    <section class="cards-grid">
+        <article class="card">
+            <h5>Fundamental Analysis</h5>
+            <h3>FOREX Fundamental Analysis</h3>
+            <p>Fundamental analysis is the study of economic...</p>
+        </article>
+
+        <article class="card">
+            <h5>Types of Analysis</h5>
+            <h3>Forex Technical Analysis</h3>
+            <p>Technical analysis is a method of studying price movements...</p>
+        </article>
+
+        <article class="card">
+            <h5>Forex Brokers</h5>
+            <h3>Fraudulent Brokers</h3>
+            <p>The most important factor when choosing a broker...</p>
+        </article>
+
+        <article class="card">
+            <h5>Harmony</h5>
+            <h3>Drawdown and Maximum Drawdown</h3>
+            <p>Drawdown is calculated as the difference...</p>
+        </article>
+    </section>
+
+    <div style="text-align:center; margin-top:25px;">
+        <button id="kembaliHome" style="
+            background:#4a90e2;
+            color:#fff;
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            font-weight:600;
+            cursor:pointer;
+        ">Kembali ke Home Page</button>
+    </div>
+
+</body>
+
+<!-- SCRIPT DIGABUNG SEMUA -->ew
+<script>
+    // Script navbar
+    const buttons = document.querySelectorAll("nav button");
+
+    const linkTujuan = {
+        "Library": "library.html",
+        "Courses": "courses.html",
+        "Tools": "tools.html",
+        "About the Academy": "academy.html",
+        "News": "news.html",
+        "Broker check": "broker-check.html",
+        "FAQ": "faq.html",
+        "Useful resources": "resources.html"
+    };
+
+    buttons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const text = btn.innerText.trim();
+            if (linkTujuan[text]) {
+                window.location.href = linkTujuan[text];
+            }
+        });
+    });
+
+    // Tombol Kembali ke Home
+    document.getElementById("kembaliHome").addEventListener("click", function () {
+        window.location.href = "home.html";  // UBAH jika nama homepage berbeda
+    });
+</script>
+
+</html>

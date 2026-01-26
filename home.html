@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amiry Laboratory - Home</title>
+
+<style>
+/* ================= VIDEO BACKGROUND ================= */
+#bg-video{
+  position:fixed;
+  top:0;left:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  z-index:-2;
+}
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  z-index:-1;
+}
+
+/* ================= BODY ================= */
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  color:white;
+  text-align:center;
+}
+
+/* ================= TITLE ================= */
+h1{
+  font-size:2.6em;
+  margin:40px 0 50px;
+  text-shadow:0 0 25px rgba(120,90,255,.8);
+}
+
+/* ================= CONTAINER ================= */
+.container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:28px;
+  width:90%;
+  max-width:1100px;
+  margin:auto;
+}
+
+/* ================= GLASS CARD ================= */
+.card{
+  position:relative;
+  padding:26px;
+  border-radius:26px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,.14),
+    rgba(255,255,255,.04)
+  );
+  backdrop-filter:blur(22px) saturate(160%);
+  -webkit-backdrop-filter:blur(22px) saturate(160%);
+  border:1px solid rgba(255,255,255,.18);
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,.55),
+    inset 0 1px 0 rgba(255,255,255,.2);
+
+  cursor:pointer;
+  transition:.45s ease;
+  opacity:0;
+  transform:translateY(30px) scale(.96);
+  animation:fadeUp 1s forwards;
+}
+
+/* GLOW */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:inherit;
+  background:radial-gradient(
+    circle at top,
+    rgba(130,100,255,.45),
+    transparent 65%
+  );
+  filter:blur(30px);
+  z-index:-1;
+}
+
+.card:hover{
+  transform:translateY(-12px) scale(1.05);
+  box-shadow:
+    0 35px 75px rgba(0,0,0,.75),
+    0 0 55px rgba(130,100,255,.6),
+    inset 0 1px 0 rgba(255,255,255,.25);
+}
+
+.card h2{margin-bottom:10px}
+.card p{opacity:.85}
+
+@keyframes fadeUp{
+  to{opacity:1;transform:none}
+}
+
+/* ================= LANGUAGE ================= */
+.lang-switch{
+  margin:50px 0;
+}
+.lang-switch button{
+  margin:6px;
+  padding:8px 16px;
+  border:none;
+  border-radius:20px;
+  background:rgba(255,255,255,.2);
+  color:white;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+}
+.lang-switch button:hover{
+  background:rgba(255,255,255,.4);
+}
+</style>
+</head>
+
+<body>
+
+<!-- VIDEO BACKGROUND -->
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="14480587_1920_1080_24fps.mp4" type="video/mp4">
+</video>
+
+<h1 id="title">Welcome to the Home Page</h1>
+
+<div class="container">
+  <div class="card" onclick="goPage('dictionary.html')">
+    <h2 id="dictionaryTitle">Dictionary</h2>
+    <p id="dictionaryDesc"></p>
+  </div>
+
+  <div class="card" onclick="goPage('galeri.html')">
+    <h2 id="galeriTitle">Presentation</h2>
+    <p id="galerisDesc"></p>
+  </div>
+
+  <div class="card" onclick="goPage('novel.html')">
+    <h2 id="novelTitle">Journey life</h2>
+    <p id="novelDesc"></p>
+  </div>
+
+  <div class="card" onclick="goPage('Glosarium.html')">
+    <h2 id="contactTitle">Glosarium</h2>
+    <p id="contactDesc"></p>
+  </div>
+
+  <div class="card" onclick="goPage('social.html')">
+    <h2 id="mediasocialTitle">Media social</h2>
+    <p id="mediasocialDesc"></p>
+  </div>
+</div>
+
+<div class="lang-switch">
+  <button onclick="setLanguage('en')">English</button>
+  <button onclick="setLanguage('id')">Indonesia</button>
+  <button onclick="setLanguage('jw')">Jawa</button>
+  <button onclick="setLanguage('es')">Español</button>
+  <button onclick="setLanguage('zh')">中文</button>
+  <button onclick="setLanguage('ko')">한국어</button>
+</div>
+
+<script>
+const translations={
+en:{
+ title:"Welcome to the Home Page",
+ dictionaryTitle:"Dictionary",
+ dictionaryDesc:"Learn more about Amiry Laboratory and our vision.",
+ galeriTitle:"Presentation",
+ galerisDesc:"Explore our latest research and experiments.",
+ novelTitle:"Journey life",
+ novelDesc:"See photos and videos of our works.",
+ contactTitle:"Glosarium",
+ contactDesc:"Get in touch with us for collaboration.",
+ mediasocialTitle:"Media social",
+ mediasocialDesc:"Follow us on our social channels."
+},
+id:{
+ title:"Selamat Datang di Halaman Utama",
+ dictionaryTitle:"Kamus",
+ dictionaryDesc:"Pelajari Amiry Laboratory dan visi kami.",
+ galeriTitle:"Presentasi",
+ galerisDesc:"Jelajahi penelitian dan eksperimen terbaru.",
+ novelTitle:"Perjalanan Hidup",
+ novelDesc:"Lihat foto dan video karya kami.",
+ contactTitle:"Glosarium",
+ contactDesc:"Hubungi kami untuk kolaborasi.",
+ mediasocialTitle:"Media Sosial",
+ mediasocialDesc:"Ikuti kami di media sosial."
+},
+jw:{
+ title:"Sugeng Rawuh ing Kaca Utama",
+ dictionaryTitle:"Kamus",
+ dictionaryDesc:"Sinau babagan Amiry Laboratory.",
+ galeriTitle:"Presentasi",
+ galerisDesc:"Eksperimen lan riset anyar.",
+ novelTitle:"Lelampahan Urip",
+ novelDesc:"Foto lan video karya.",
+ contactTitle:"Glosarium",
+ contactDesc:"Kolaborasi bebarengan.",
+ mediasocialTitle:"Media Sosial",
+ mediasocialDesc:"Tindakake media sosial."
+},
+es:{
+ title:"Bienvenido a la Página Principal",
+ dictionaryTitle:"Diccionario",
+ dictionaryDesc:"Conoce más sobre Amiry Laboratory.",
+ galeriTitle:"Presentación",
+ galerisDesc:"Explora nuestras investigaciones.",
+ novelTitle:"Viaje de Vida",
+ novelDesc:"Fotos y videos de nuestros trabajos.",
+ contactTitle:"Glosario",
+ contactDesc:"Colabora con nosotros.",
+ mediasocialTitle:"Redes Sociales",
+ mediasocialDesc:"Síguenos en redes sociales."
+},
+zh:{
+ title:"欢迎来到主页",
+ dictionaryTitle:"词典",
+ dictionaryDesc:"了解 Amiry Laboratory。",
+ galeriTitle:"展示",
+ galerisDesc:"探索我们的研究。",
+ novelTitle:"人生旅程",
+ novelDesc:"查看我们的作品。",
+ contactTitle:"词汇表",
+ contactDesc:"与我们合作。",
+ mediasocialTitle:"社交媒体",
+ mediasocialDesc:"关注我们的社交媒体。"
+},
+ko:{
+ title:"홈페이지에 오신 것을 환영합니다",
+ dictionaryTitle:"사전",
+ dictionaryDesc:"Amiry Laboratory를 알아보세요.",
+ galeriTitle:"프레젠테이션",
+ galerisDesc:"최신 연구를 확인하세요.",
+ novelTitle:"인생 여정",
+ novelDesc:"작품을 감상하세요.",
+ contactTitle:"용어집",
+ contactDesc:"협업 문의.",
+ mediasocialTitle:"소셜 미디어",
+ mediasocialDesc:"소셜 채널을 팔로우하세요."
+}
+};
+
+function setLanguage(lang){
+ for(const id in translations[lang]){
+  document.getElementById(id).textContent = translations[lang][id];
+ }
+}
+
+function goPage(url){
+ window.location.href = url;
+}
+
+setLanguage('en');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kamus Istilah Islam</title>
+
+  <!-- FONT ARABIC & LATIN -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      background-color: #F5F5DC; /* Krem coklat lembut */
+      font-family: 'Inter', sans-serif;
+      padding: 20px;
+      margin: 0;
+      color: #2b2b2b;
+    }
+
+    header {
+      text-align: center;
+      padding: 25px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #8B4513 0%, #D2B48C 100%); /* Coklat gelap ke coklat terang */
+      color: white;
+      margin-bottom: 30px;
+      position: relative;
+      transition: background 0.3s ease;
+    }
+
+    header.clicked {
+      background: linear-gradient(135deg, #8B4513 0%, #D2B48C 100%);
+    }
+
+    header button {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      background: #FFF8DC; /* Krem coklat */
+      color: #8B4513; /* Coklat gelap */
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.2s ease-in-out;
+    }
+
+    header button:hover,
+    header button:active {
+      background: #F5E6D3; /* Lebih terang */
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
+
+    input[type="text"] {
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: 1px solid #A0522D; /* Coklat sedang */
+      width: 300px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      outline: none;
+      font-size: 0.9rem;
+      color: #2b2b2b;
+      font-family: 'Inter', sans-serif;
+    }
+
+    input[type="text"]:focus {
+      box-shadow: 0 0 0 3px rgba(139,69,19,0.3); /* Coklat fokus */
+    }
+
+    button.search-btn {
+      padding: 12px 20px;
+      border-radius: 30px;
+      border: none;
+      background: #8B4513; /* Coklat gelap */
+      color: white;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    button.search-btn:hover,
+    button.search-btn:active {
+      background: #A0522D; /* Coklat sedang */
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 25px;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #FFF8DC 0%, #F5E6D3 100%); /* Krem coklat */
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      cursor: pointer;
+      border: 2px solid #A0522D; /* Coklat border */
+      word-wrap: break-word;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, #D2B48C 0%, #FFF8DC 100%); /* Coklat terang ke krem */
+      color: #3a270f;
+      padding: 18px;
+      text-align: center;
+      border-bottom: 3px solid #F5F5DC; /* Sesuai background body */
+    }
+
+    .arabic-title {
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.4rem;
+      color: #3a270f;
+    }
+
+    .latin-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: #3a270f;
+      opacity: 1;
+    }
+
+    .card-body {
+      padding: 18px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      direction: rtl;
+      text-align: right;
+      color: #2b2b2b;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .field-label {
+      font-weight: bold;
+      color: #8B4513; /* Coklat gelap untuk label */
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .quote {
+      background: linear-gradient(135deg, #D2B48C 0%, #FFF8DC 100%); /* Coklat terang ke krem */
+      color: #3a270f;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border-right: 4px solid #A0522D; /* Coklat */
+      font-style: italic;
+      margin-top: 12px;
+      text-align: right;
+      direction: rtl;
+      font-family: 'Noto Naskh Arabic', serif;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+
+<body>
+  <header id="mainHeader">
+    <button onclick="window.location.href='home.html'"><i class="fa-solid fa-house"></i> Home</button>
+    <h1>Kamus Istilah Islam</h1>
+    <p>Penjelasan konsep dan terminologi dalam studi Islam</p>
+  </header>
+
+  <div class="controls">
+    <input type="text" id="searchInput" placeholder="Cari istilah atau kata kunci...">
+    <button class="search-btn" id="resetBtn">Reset</button>
+  </div>
+
+  <div class="cards-container" id="cardsContainer"></div>
+
+  <script>
+    let allData = [];
+
+    function normalizeArabic(text) {
+      return text
+        .replace(/[\u064B-\u065F]/g, '')
+        .replace(/ٱ/g, 'ا')
+        .replace(/ى/g, 'ي')
+        .replace(/ة/g, 'ه');
+    }
+
+    async function loadKamus() {
+      const container = document.getElementById('cardsContainer');
+      const search = document.getElementById('searchInput').value.trim().toLowerCase();
+      container.innerHTML = '<p style="text-align:center;">⏳ Memuat data...</p>';
+
+      try {
+        if (allData.length === 0) {
+          const response = await fetch('data.json');
+          if (!response.ok) throw new Error('File JSON tidak ditemukan.');
+          allData = await response.json();
+        }
+
+        const filtered = search
+          ? allData.filter(t => {
+              const searchNorm = normalizeArabic(search);
+              const arabicNorm = normalizeArabic(t.arabic);
+
+              return (
+                arabicNorm.includes(searchNorm) ||
+                t.latin.toLowerCase().includes(search) ||
+                t.arti.toLowerCase().includes(search) ||
+                (t.penggunaankata && t.penggunaankata.toLowerCase().includes(search)) ||
+                (t.makna && t.makna.toLowerCase().includes(search))
+              );
+            })
+          : allData;
+
+        container.innerHTML = '';
+
+        if (filtered.length === 0) {
+          container.innerHTML = '<p style="text-align:center;">❌ Tidak ditemukan hasil pencarian.</p>';
+          return;
+        }
+
+        filtered.forEach(term => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="card-header">
+              <div class="arabic-title">${term.arabic}</div>
+              <div class="latin-title">${term.latin}</div>
+            </div>
+            <div class="card-body">
+              <span class="field-label">Akar Kata:</span> ${term.akar}<br>
+              <span class="field-label">Derivasi:</span> ${term.derivasi}<br>
+              <span class="field-label">Arti:</span> ${term.arti}<br>
+              <span class="field-label">Penggunaan Kata:</span> ${term.penggunaankata}<br>
+              <span class="field-label">Makna:</span> ${term.makna}
+              ${term.hadith ? `<div class="quote">${term.hadith}</div>` : ''}
+            </div>
+          `;
+          card.addEventListener('click', function() {
+            this.classList.toggle('clicked');
+          });
+          container.appendChild(card);
+        });
+
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = '<p style="color:red;">❌ Gagal memuat data (pastikan file data.json berada di folder yang sama).</p>';
+      }
+    }
+
+    window.onload = loadKamus;
+
+    document.getElementById('searchInput').addEventListener('input', loadKamus);
+    document.getElementById('resetBtn').addEventListener('click', function() {
+      document.getElementById('searchInput').value = '';
+      loadKamus();
+      document.getElementById('mainHeader').classList.toggle('clicked');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glosarium Tasawuf</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f7f7;
+      padding: 40px;
+      color: #222;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-weight: 600;
+      font-size: 32px;
+    }
+    .card {
+      background: #fff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background: #eee;
+      font-weight: 600;
+    }
+    .search-box {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 16px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Glosarium Tasawuf</h1>
+  <div class="card">
+    <input type="text" id="search" class="search-box" placeholder="Cari istilah..." />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Arab</th>
+          <th>Indonesia</th>
+          <th>Latin</th>
+          <th>English</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+        <tr><td colspan="4" style="text-align:center; padding:20px;">Memuat data...</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    async function loadData() {
+      const res = await fetch('json.html');
+      const data = await res.json();
+      renderTable(data);
+
+      document.getElementById('search').addEventListener('input', function() {
+        const keyword = this.value.toLowerCase(); 
+        const filtered = data.filter(item =>
+          item.arab.toLowerCase().includes(keyword) ||
+          item.indonesia.toLowerCase().includes(keyword) ||
+          item.latin.toLowerCase().includes(keyword) ||
+          item.english.toLowerCase().includes(keyword)
+        );
+        renderTable(filtered);
+      });
+    }
+
+    function renderTable(list) {
+      const tbody = document.getElementById('table-body');
+      tbody.innerHTML = '';
+
+      list.forEach(item => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${item.arab}</td>
+          <td>${item.indonesia}</td>
+          <td>${item.latin}</td>
+          <td>${item.english}</td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:20px;">Tidak ditemukan.</td></tr>`;
+      }
+    }
+
+    loadData();
+  </script>
+</body>
+</html>
