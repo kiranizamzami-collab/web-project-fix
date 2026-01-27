@@ -85,21 +85,17 @@ section{
   align-items:center;
 }
 .hero h1{
-  font-size:3em;
+  font-size:clamp(2rem, 5vw, 3em); /* responsif teks: minimal 2rem, maksimal 3em */
   margin-bottom:30px;
-  opacity:0;
-  transform:translateY(40px);
-  transition:1.2s ease;
-}
-.hero.show h1{
-  opacity:1;
+  opacity:1; /* langsung muncul */
   transform:translateY(0);
+  transition:1.2s ease;
 }
 .hero button{
   padding:12px 38px;
   border:none;
   border-radius:30px;
-  font-size:1em;
+  font-size:clamp(0.9rem,2.5vw,1em); /* teks tombol responsif */
   cursor:pointer;
   background:#9b5cff;
   color:white;
@@ -111,13 +107,8 @@ section{
 #robot-viewer{
   width:500px;
   height:400px;
-  opacity:0;
-  transform:translateX(120px);
-  transition:1.2s ease;
-}
-.hero.show #robot-viewer{
-  opacity:1;
-  transform:translateX(0);
+  opacity:1; /* selalu tampil */
+  transition:transform 1s ease;
 }
 
 /* ===== CONTENT ===== */
@@ -147,12 +138,12 @@ section{
 }
 
 .box h2{
-  font-size:2.3em;
+  font-size:clamp(1.5rem,4vw,2.3em); /* teks responsif */
   margin-bottom:20px;
 }
 
 .box p{
-  font-size:1.1em;
+  font-size:clamp(1rem,3vw,1.1em); /* teks responsif */
   line-height:1.7;
   opacity:.85;
 }
@@ -161,12 +152,22 @@ section{
 @media(max-width:900px){
   section{
     grid-template-columns:1fr;
-    padding:100px 30px;
+    padding:80px 20px;
+  }
+  .hero{
+    flex-direction:column;
+    gap:30px;
   }
   #robot-viewer{
     width:100%;
-    height:300px;
-    transform:translateX(0);
+    height:350px; /* proporsional di HP */
+    transform:none !important;
+  }
+  .hero h1{
+    text-align:center;
+  }
+  .hero button{
+    align-self:center;
   }
 }
 </style>
@@ -196,9 +197,9 @@ section{
   </div>
   <div id="robot-viewer">
     <spline-viewer 
-      url="https://prod.spline.design/bDXvXaaZXEmBk7p4/scene.splinecode" 
-      style="width:100%; height:100%; transform: scale(1.3) rotateX(0deg) rotateY(0deg);">
-    </spline-viewer>
+      url="https://prod.spline.design/bDXvXaaZXEmBk7p4/scene.splinecode"
+      style="width:100%; height:100%;"
+    ></spline-viewer>
   </div>
 </section>
 
@@ -244,18 +245,16 @@ const heroSection=document.querySelector(".hero");
 window.addEventListener("scroll",()=>{
   const trigger=window.innerHeight*0.85;
   
-  if(heroSection.getBoundingClientRect().top < trigger){
-    heroSection.classList.add("show");
-  }
-
   boxes.forEach(box=>{
     if(box.getBoundingClientRect().top<trigger){
       box.classList.add("show");
     }
   });
 
-  particles.rotation.y=window.scrollY*0.00015;
-  particles.rotation.x=window.scrollY*0.00008;
+  if(window.particles){
+    window.particles.rotation.y=window.scrollY*0.00015;
+    window.particles.rotation.x=window.scrollY*0.00008;
+  }
 });
 
 /* ===== 3D BACKGROUND ===== */
@@ -285,6 +284,7 @@ const material=new THREE.PointsMaterial({
 
 const particles=new THREE.Points(geometry,material);
 scene.add(particles);
+window.particles = particles;
 
 function animate(){
   requestAnimationFrame(animate);
