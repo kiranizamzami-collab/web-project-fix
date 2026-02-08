@@ -1,303 +1,277 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amiry Laboratory</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amiry Laboratory - Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --navy: #002147;
+            --gold: #d4af37;
+            --bg-bright: #fdfcf8;
+            --white: #ffffff;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-<script type="module" src="https://unpkg.com/@splinetool/viewer@1.12.36/build/spline-viewer.js"></script>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Merriweather',serif;
-  color:#fff;
-  overflow-x:hidden;
-  background:
-    radial-gradient(circle at 10% 20%, #3b1466, transparent 45%),
-    radial-gradient(circle at 90% 80%, #0a3a5e, transparent 45%),
-    linear-gradient(180deg, #030007, #000);
-}
+        body {
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: var(--bg-bright);
+            color: var(--navy);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* ===== 3D BACKGROUND ===== */
-#bg3d{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-}
+        /* ================= HEADER ================= */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
 
-/* ===== SOFT GLOW ===== */
-.glow{
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(155,92,255,.18), transparent 40%),
-    radial-gradient(circle at 70% 70%, rgba(0,180,255,.14), transparent 45%);
-  animation:glowMove 18s linear infinite;
-  z-index:-1;
-}
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem; /* Ukuran lebih kecil & proporsional */
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--navy);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
 
-@keyframes glowMove{
-  0%{transform:translate(0,0)}
-  50%{transform:translate(-60px,40px)}
-  100%{transform:translate(0,0)}
-}
+        .subtitle {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+        }
 
-/* ===== NAVBAR ===== */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:18px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:rgba(0,0,0,.45);
-  backdrop-filter:blur(14px);
-  z-index:1000;
-}
-nav h2{font-weight:400;letter-spacing:1px}
-nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:28px;
-  font-size:14px;
-  opacity:.75;
-}
-nav a:hover{opacity:1}
+        /* ================= CONTAINER ================= */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            width: 90%;
+            max-width: 1100px;
+            margin-bottom: 60px;
+        }
 
-/* ===== SECTIONS ===== */
-section{
-  min-height:100vh;
-  padding:120px 80px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-}
+        /* ================= CARDS ================= */
+        .card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 4px;
+            border-top: 5px solid var(--gold);
+            box-shadow: 0 15px 35px rgba(0, 33, 71, 0.05);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
 
-/* ===== HERO ===== */
-.hero{
-  display:flex;
-  gap:40px;
-  align-items:center;
-}
-.hero h1{
-  font-size:clamp(2rem, 5vw, 3em); /* responsif teks: minimal 2rem, maksimal 3em */
-  margin-bottom:30px;
-  opacity:1; /* langsung muncul */
-  transform:translateY(0);
-  transition:1.2s ease;
-}
-.hero button{
-  padding:12px 38px;
-  border:none;
-  border-radius:30px;
-  font-size:clamp(0.9rem,2.5vw,1em); /* teks tombol responsif */
-  cursor:pointer;
-  background:#9b5cff;
-  color:white;
-  transition:.3s ease;
-}
-.hero button:hover{background:#b98cff}
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 33, 71, 0.12);
+            border-top-color: var(--navy);
+        }
 
-/* ===== SPLINE VIEWER CONTAINER ===== */
-#robot-viewer{
-  width:500px;
-  height:400px;
-  opacity:1; /* selalu tampil */
-  transition:transform 1s ease;
-}
+        .card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--navy);
+            letter-spacing: 1px;
+        }
 
-/* ===== CONTENT ===== */
-.content{
-  background:rgba(0,0,0,.65);
-}
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #555;
+        }
 
-.box{
-  max-width:520px;
-  opacity:0;
-  transition:1.2s ease;
-}
+        /* ================= LANG SWITCH ================= */
+        .lang-switch {
+            margin-bottom: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
 
-.box.left{
-  transform:translateX(-120px);
-  justify-self:start;
-}
+        .lang-switch button {
+            background: var(--white);
+            border: 1px solid #ddd;
+            color: var(--navy);
+            padding: 8px 16px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transition: 0.3s;
+        }
 
-.box.right{
-  transform:translateX(120px);
-  justify-self:end;
-}
+        .lang-switch button:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
 
-.box.show{
-  opacity:1;
-  transform:translateX(0);
-}
-
-.box h2{
-  font-size:clamp(1.5rem,4vw,2.3em); /* teks responsif */
-  margin-bottom:20px;
-}
-
-.box p{
-  font-size:clamp(1rem,3vw,1.1em); /* teks responsif */
-  line-height:1.7;
-  opacity:.85;
-}
-
-/* ===== MOBILE ===== */
-@media(max-width:900px){
-  section{
-    grid-template-columns:1fr;
-    padding:80px 20px;
-  }
-  .hero{
-    flex-direction:column;
-    gap:30px;
-  }
-  #robot-viewer{
-    width:100%;
-    height:350px; /* proporsional di HP */
-    transform:none !important;
-  }
-  .hero h1{
-    text-align:center;
-  }
-  .hero button{
-    align-self:center;
-  }
-}
-</style>
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; letter-spacing: 2px; }
+            .container { width: 95%; }
+        }
+    </style>
 </head>
-
 <body>
 
-<canvas id="bg3d"></canvas>
-<div class="glow"></div>
+<header>
+    <h1 id="title">AMIRY HUB</h1>
+    <div class="subtitle">welcome to our home page</div>
+</header>
 
-<!-- NAVBAR -->
-<nav>
-  <h2>Amiry </h2>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#vision">Vision</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+<div class="container">
+    <div class="card" onclick="goPage('dictionary.html')">
+        <h2 id="dictionaryTitle">Dictionary</h2>
+        <p id="dictionaryDesc"></p>
+    </div>
 
-<!-- HERO -->
-<section class="hero" id="home">
-  <div>
-    <h1>Welcome to<br>Amiry Laboratory</h1>
-    <button onclick="location.href='home.html'">Explore</button>
-  </div>
-  <div id="robot-viewer">
-    <spline-viewer 
-      url="https://prod.spline.design/bDXvXaaZXEmBk7p4/scene.splinecode"
-      style="width:100%; height:100%;"
-    ></spline-viewer>
-  </div>
-</section>
+    <div class="card" onclick="goPage('galeri.html')">
+        <h2 id="galeriTitle">Presentation</h2>
+        <p id="galerisDesc"></p>
+    </div>
 
-<!-- VISION -->
-<section class="content" id="vision">
-  <div class="box left">
-    <h2>Powerful by design.</h2>
-    <p>
-      We create intelligent digital systems that move,
-      respond, and feel alive.
-    </p>
-  </div>
-</section>
+    <div class="card" onclick="goPage('novel.html')">
+        <h2 id="novelTitle">Journey Life</h2>
+        <p id="novelDesc"></p>
+    </div>
 
-<!-- ABOUT -->
-<section class="content" id="about">
-  <div></div>
-  <div class="box right">
-    <h2>Designed to think.</h2>
-    <p>
-      Technology should feel calm, intentional,
-      and deeply human.
-    </p>
-  </div>
-</section>
+    <div class="card" onclick="goPage('Glosarium.html')">
+        <h2 id="contactTitle">Glosarium</h2>
+        <p id="contactDesc"></p>
+    </div>
 
-<!-- CONTACT -->
-<section class="content" id="contact">
-  <div class="box left">
-    <h2>Let’s collaborate.</h2>
-    <p>
-      Amiry Laboratory is open for ideas,
-      experiments, and innovation.
-    </p>
-  </div>
-</section>
+    <div class="card" onclick="goPage('social.html')">
+        <h2 id="mediasocialTitle">Media Social</h2>
+        <p id="mediasocialDesc"></p>
+    </div>
+</div>
+
+<div class="lang-switch">
+    <button onclick="setLanguage('id')">INDONESIA</button>
+    <button onclick="setLanguage('en')">ENGLISH</button>
+    <button onclick="setLanguage('jw')">JAWA</button>
+    <button onclick="setLanguage('es')">ESPAÑOL</button>
+    <button onclick="setLanguage('zh')">中文</button>
+    <button onclick="setLanguage('ko')">한국어</button>
+</div>
 
 <script>
-/* ===== SCROLL EFFECT ===== */
-const boxes=document.querySelectorAll(".box");
-const heroSection=document.querySelector(".hero");
-
-window.addEventListener("scroll",()=>{
-  const trigger=window.innerHeight*0.85;
-  
-  boxes.forEach(box=>{
-    if(box.getBoundingClientRect().top<trigger){
-      box.classList.add("show");
+const translations = {
+    id: {
+        title: "HOME PAGE",
+        dictionaryTitle: "Kamus",
+        dictionaryDesc: "Pelajari Amiry Laboratory dan visi kami.",
+        galeriTitle: "Presentasi",
+        galerisDesc: "Jelajahi penelitian dan eksperimen terbaru.",
+        novelTitle: "Perjalanan Hidup",
+        novelDesc: "Lihat foto dan video karya kami.",
+        contactTitle: "Glosarium",
+        contactDesc: "Database lengkap istilah dan definisi.",
+        mediasocialTitle: "Media Sosial",
+        mediasocialDesc: "Ikuti kami di media sosial."
+    },
+    en: {
+        title: "AMIRY HUB",
+        dictionaryTitle: "Dictionary",
+        dictionaryDesc: "Learn more about Amiry Laboratory and our vision.",
+        galeriTitle: "Presentation",
+        galerisDesc: "Explore our latest research and experiments.",
+        novelTitle: "Journey Life",
+        novelDesc: "See photos and videos of our works.",
+        contactTitle: "Glosarium",
+        contactDesc: "Get in touch with us for collaboration.",
+        mediasocialTitle: "Media Social",
+        mediasocialDesc: "Follow us on our social channels."
+    },
+    jw: {
+        title: "AMIRY HUB",
+        dictionaryTitle: "Kamus",
+        dictionaryDesc: "Sinau babagan Amiry Laboratory.",
+        galeriTitle: "Presentasi",
+        galerisDesc: "Eksperimen lan riset anyar.",
+        novelTitle: "Lelampahan Urip",
+        novelDesc: "Foto lan video karya.",
+        contactTitle: "Glosarium",
+        contactDesc: "Kolaborasi bebarengan.",
+        mediasocialTitle: "Media Sosial",
+        mediasocialDesc: "Tindakake media sosial."
+    },
+    es: {
+        title: "AMIRY HUB",
+        dictionaryTitle: "Diccionario",
+        dictionaryDesc: "Conoce más sobre Amiry Laboratory.",
+        galeriTitle: "Presentación",
+        galerisDesc: "Explora nuestras investigaciones.",
+        novelTitle: "Viaje de Vida",
+        novelDesc: "Fotos y videos de nuestros trabajos.",
+        contactTitle: "Glosario",
+        contactDesc: "Colabora con nosotros.",
+        mediasocialTitle: "Redes Sociales",
+        mediasocialDesc: "Síguenos en redes sociales."
+    },
+    zh: {
+        title: "AMIRY HUB",
+        dictionaryTitle: "词典",
+        dictionaryDesc: "了解 Amiry Laboratory。",
+        galeriTitle: "展示",
+        galerisDesc: "探索我们的研究。",
+        novelTitle: "人生旅程",
+        novelDesc: "查看我们的作品。",
+        contactTitle: "词汇表",
+        contactDesc: "与我们合作。",
+        mediasocialTitle: "社交媒体",
+        mediasocialDesc: "关注我们的社交媒体。"
+    },
+    ko: {
+        title: "AMIRY HUB",
+        dictionaryTitle: "사전",
+        dictionaryDesc: "Amiry Laboratory를 알아보세요.",
+        galeriTitle: "프레젠테이션",
+        galerisDesc: "최신 연구를 확인하세요.",
+        novelTitle: "인생 여정",
+        novelDesc: "작품을 감상하세요.",
+        contactTitle: "용어집",
+        contactDesc: "협업 문의.",
+        mediasocialTitle: "소셜 미디어",
+        mediasocialDesc: "소셜 채널을 팔로우하세요."
     }
-  });
+};
 
-  if(window.particles){
-    window.particles.rotation.y=window.scrollY*0.00015;
-    window.particles.rotation.x=window.scrollY*0.00008;
-  }
-});
-
-/* ===== 3D BACKGROUND ===== */
-const canvas=document.getElementById("bg3d");
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas,alpha:true});
-renderer.setSize(innerWidth,innerHeight);
-renderer.setPixelRatio(devicePixelRatio);
-camera.position.z=6;
-
-const geometry=new THREE.BufferGeometry();
-const pos=[];
-for(let i=0;i<2400;i++){
-  pos.push(
-    (Math.random()-.5)*14,
-    (Math.random()-.5)*14,
-    (Math.random()-.5)*14
-  );
+function setLanguage(lang) {
+    const translation = translations[lang];
+    // Memastikan setiap elemen ID di-update sesuai data di atas
+    document.getElementById('title').textContent = translation.title;
+    document.getElementById('dictionaryTitle').textContent = translation.dictionaryTitle;
+    document.getElementById('dictionaryDesc').textContent = translation.dictionaryDesc;
+    document.getElementById('galeriTitle').textContent = translation.galeriTitle;
+    document.getElementById('galerisDesc').textContent = translation.galerisDesc;
+    document.getElementById('novelTitle').textContent = translation.novelTitle;
+    document.getElementById('novelDesc').textContent = translation.novelDesc;
+    document.getElementById('contactTitle').textContent = translation.contactTitle;
+    document.getElementById('contactDesc').textContent = translation.contactDesc;
+    document.getElementById('mediasocialTitle').textContent = translation.mediasocialTitle;
+    document.getElementById('mediasocialDesc').textContent = translation.mediasocialDesc;
 }
-geometry.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
 
-const material=new THREE.PointsMaterial({
-  color:0x9b5cff,
-  size:0.02
-});
-
-const particles=new THREE.Points(geometry,material);
-scene.add(particles);
-window.particles = particles;
-
-function animate(){
-  requestAnimationFrame(animate);
-  particles.rotation.y+=0.0003;
-  renderer.render(scene,camera);
+function goPage(url) {
+    window.location.href = url;
 }
-animate();
 
-addEventListener("resize",()=>{
-  camera.aspect=innerWidth/innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(innerWidth,innerHeight);
-});
+// Menjalankan translate bahasa Indonesia saat pertama kali dibuka
+setLanguage('id');
 </script>
 
 </body>
